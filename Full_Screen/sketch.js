@@ -9,6 +9,7 @@ function draw() {
   ellipse(width/2, height/2, 60, 60);
 }
 function windowResized() {
+  // console.log(java script web) = println (librairie p5gs)
   console.log("resized:" + windowWidth);
 	resizeCanvas(windowWidth, windowHeight);
 }

@@ -9,7 +9,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
 
   //create a sprite and add the 3 animations
-  Monster = createSprite(400, 400, 50, 100);
+  Monster = createSprite(400, 400, 25, 50);
 
   //label, first frame, last frame
   //the addAnimation method returns the added animation
@@ -24,10 +24,20 @@ function setup() {
 
   Monster.addAnimation("spinning", "monsterFront_01.png", "monsterFront_03.png");
 
+  Monster.onMousePressed = function() {
+    Monster.changeAnimation("spinning");
+    }
+
 }
 
 function draw() {
   background(255,255,255);
+
+  //or by applying a force toward a point
+Monster.attractionPoint(.2, mouseX, mouseY);
+//since the force keeps incrementing the speed you can
+//set a limit to it with maxSpeed
+Monster.maxSpeed = 5;
 
   //if mouse is to the left
   if(mouseX < Monster.position.x - 10) {
@@ -49,13 +59,6 @@ function draw() {
     Monster.velocity.x = 0;
   }
 
-  if(mouseIsPressed) {
-    //the rotation is not part of the spinning animation
-    Monster.rotation -= 10;
-    Monster.changeAnimation("spinning");
-  }
-  else
-    Monster.rotation = 0;
 
   //draw the sprite
   drawSprites();

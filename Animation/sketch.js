@@ -22,7 +22,7 @@ function setup() {
 
   Monster.addAnimation("moving", "assets/MonsterMOVE_00000.png", "assets/MonsterMOVE_00049.png");
 
-  Monster.addAnimation("spinning", "monsterFront_01.png", "monsterFront_03.png");
+  Monster.addAnimation("spinning", "assets/monsterFront_01.png", "assets/monsterFront_03.png");
 
   Monster.onMousePressed = function() {
     Monster.changeAnimation("spinning");
@@ -59,7 +59,14 @@ Monster.maxSpeed = 5;
     Monster.velocity.x = 0;
   }
 
-
+    if(mouseIsPressed) {
+      //the rotation is not part of the spinning animation
+      Monster.rotation -= 10;
+      Monster.changeAnimation("spinning");
+    }
+    else {
+      Monster.rotation = 0;
+      }
   //draw the sprite
   drawSprites();
 }
